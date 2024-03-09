@@ -88,6 +88,26 @@ section {
     transition: ease 0.3s all;
 }
 
+nav ul li a.active {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 /* Header Styles */
 .page__header {
     background: #fff;

@@ -28,6 +28,7 @@ let isScrolling;
 const sectionsElements = document.querySelectorAll('section');
 const navbarList = document.getElementById('navbar__list');
 
+
 function getH2FromSection(section) {
     return section.querySelector('h2');
 }
@@ -100,6 +101,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function removeActiveClassFromLinks() {
+    document.querySelectorAll('.navbar__menu .menu__link').forEach((link) => {
+        link.classList.remove('active');
+    });
+}
+
+// Function to add active class to the navbar link based on the active section
+function highlightNavbarLink() {
+    const sections = document.querySelectorAll('section');
+
+    sections.forEach((section) => {
+        const id = section.getAttribute('id');
+        const navbarLink = document.querySelector(`.navbar__menu .menu__link[href="#${id}"]`);
+
+        if (isInViewport(section)) {
+            // Remove active class from all links first
+            removeActiveClassFromLinks();
+            // Add active class to the current link
+            if (navbarLink) { 
+                navbarLink.classList.add('active') 
+            };
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNavbarLink);
+window.addEventListener('resize', highlightNavbarLink);
 
 window.addEventListener('scroll', setActiveSection);
 window.addEventListener('scroll', hidePageHeader(), false);
